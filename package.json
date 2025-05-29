@@ -1,0 +1,15 @@
+{
+  "name": "software-dev-course-unit-testing",
+  "version": "1.0.0",
+  "description": "This is the README.md file! I, as the presenter, will fill it with content!",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
