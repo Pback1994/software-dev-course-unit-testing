@@ -24,18 +24,8 @@ function sortInventory(inventory, key) {
   return inventory.sort((a, b) => {
     if (a[key] < b[key]) return -1;
     if (a[key] > b[key]) return 1;
-    if ((a[key] = b[key])) return 0;
+    return 0;
   });
 }
-
-/*
-let storeInventory = [
-  { product: "hat", price: 25 },
-  { product: "gloves", price: 45 },
-  { product: "sock", price: 50 },
-];
-
-console.log(sortInventory(storeInventory, "price"));
-*/
 
 module.exports = { calculateDiscount, filterProducts, sortInventory };

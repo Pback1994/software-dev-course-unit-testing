@@ -26,7 +26,7 @@ describe("calculateDiscount", () => {
 // Unit Test #2: filterProducts function
 
 describe("filterProducts", () => {
-  test("should return an empty string if an array is not passed in the function for products", () => {
+  test("should return an empty string if an array is not passed in the callback function for products", () => {
     let schoolProducts = [
       { product1: "laptop", isElectronic: true },
       { product2: "backpack", isElectronic: false },
@@ -45,8 +45,69 @@ describe("filterProducts", () => {
   });
 
   test("should return the filtered array of all electronic products", () => {
-    expect(filterProducts(schoolProducts, isElectronicProducts)).toEqual(
+    let schoolProducts = [
+      { product: "laptop", isElectronic: true },
+      { product: "backpack", isElectronic: false },
+      { product: "monitor", isElectronic: true },
+    ];
+
+    function isElectronicProducts(schoolProducts) {
+      return schoolProducts.isElectronic === true;
+    }
+
+    expect(filterProducts(schoolProducts, isElectronicProducts)).toStrictEqual(
       filterProducts(schoolProducts, isElectronicProducts)
     );
+  });
+
+  test("should return an empty array is there are no products in the product inventory", () => {
+    let schoolProducts = [];
+
+    function isElectronicProducts(schoolProducts) {
+      return schoolProducts.isElectronic === true;
+    }
+
+    expect(filterProducts(schoolProducts, isElectronicProducts)).toEqual([]);
+  });
+});
+
+// Unit #3: sortInventory function
+
+describe("sortInventory", () => {
+  test("should return an empty array if the inventory of products passed into the function is not an array", () => {
+    let schoolProducts = { product: "laptop", isElectronic: true };
+
+    function isElectronicProducts(schoolProducts) {
+      return schoolProducts.isElectronic === true;
+    }
+
+    expect(sortInventory(schoolProducts, "product")).toEqual([]);
+  });
+
+  test("should sort a valid array of products by price from smallest to largest value", () => {
+    let schoolProducts = [
+      { product: "laptop", isElectronic: true, price: 45 },
+      { product: "backpack", isElectronic: false, price: 60 },
+      { product: "monitor", isElectronic: true, price: 50 },
+    ];
+
+    expect(sortInventory(schoolProducts, "price")).toEqual([
+      { product: "laptop", isElectronic: true, price: 45 },
+      { product: "monitor", isElectronic: true, price: 50 },
+      { product: "backpack", isElectronic: false, price: 60 },
+    ]);
+  });
+
+  test("should return an array in the same order if you are sorting an array of products with the same price value.", () => {
+    let schoolProducts = [
+      { product: "laptop", isElectronic: true, price: 45 },
+      { product: "backpack", isElectronic: false, price: 45 },
+      { product: "monitor", isElectronic: true, price: 45 },
+    ];
+    expect(sortInventory(schoolProducts, "price")).toEqual([
+      { product: "laptop", isElectronic: true, price: 45 },
+      { product: "backpack", isElectronic: false, price: 45 },
+      { product: "monitor", isElectronic: true, price: 45 },
+    ]);
   });
 });
